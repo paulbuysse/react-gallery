@@ -1,7 +1,30 @@
 import React, { Component } from 'react';
 import './App.css';
+import GalleryList from '../GalleryList/GalleryList.js';
+import axios from 'axios';
 
 class App extends Component {
+
+  componentDidMount() {
+    this.getPics();
+  };
+
+  state = {
+    picList: []
+  };
+
+  getPics = () => {
+    axios.get('/gallery')
+    .then(response => {
+
+      this.setState({
+        picList: response.data
+      })
+    }).catch(error => {
+      console.log('error in getPics', error)
+    })
+  };
+
   render() {
     return (
       <div className="App">
@@ -10,7 +33,10 @@ class App extends Component {
         </header>
         <br/>
         <p>Gallery goes here</p>
-        <img src="images/goat_small.jpg"/>
+        {/* <img src="images/goat_small.jpg"/> */}
+        <GalleryList 
+        picList={this.state.picList}
+        getPics={this.getPics}/>
       </div>
     );
   }
