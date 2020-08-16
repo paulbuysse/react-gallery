@@ -2,7 +2,19 @@ import React, { Component } from 'react';
 import './GalleryItem.css';
 
 class GalleryItem extends Component {
+
+    state = {
+        picDesc: true
+    }
+
+    seeDesc = () => {
+        this.setState({
+            picDesc: !this.state.picDesc
+        })
+    } 
+
     render() {
+
         const numOfLikes = this.props.pic.likes
         let phraseForLikes = ''
 
@@ -14,11 +26,13 @@ class GalleryItem extends Component {
             phraseForLikes = `${numOfLikes} people like this!`
         }
 
+        console.log(this.props.pic)
+
         return (
             <div>
-                <img src={this.props.pic.path} />
+                {this.state.picDesc ? <img onClick={this.seeDesc} src={this.props.pic.path} /> : <h3 onClick={this.seeDesc}>{this.props.pic.description}</h3>}
                 <h3>{phraseForLikes}</h3>
-                <button>like it!</button>
+                <button onClick={() => {this.props.likePic(this.props.pic)}}>like it!</button>
             </div>
         )
     }

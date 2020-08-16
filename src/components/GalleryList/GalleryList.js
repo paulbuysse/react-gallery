@@ -9,18 +9,19 @@ class GalleryList extends Component {
         console.log(this.props.picList)
 
         return (
-            <div>
-                <p>this is connected</p>
+            
 
-                {this.props.picList.map((pic) => {
+                this.props.picList.map((pic) => {
                     return (
                         <GalleryItem
                             picList={this.props.picList}
-                            pic={pic} />
+                            pic={pic} 
+                            likePic={this.props.likePic}
+                            getPics={this.props.getPics}/>
                     )
-                })}
+                    })
 
-            </div>
+            
         )
     }
 }

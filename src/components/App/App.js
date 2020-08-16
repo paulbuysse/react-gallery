@@ -25,6 +25,16 @@ class App extends Component {
     })
   };
 
+  likePic = (likedImage) => {
+
+    axios.put(`/gallery/like/${likedImage.id}`)
+    .then(response => {
+      this.getPics()
+    }).catch(error => {
+      console.log('error in likePic', error)
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -32,11 +42,10 @@ class App extends Component {
           <h1 className="App-title">Gallery of my life</h1>
         </header>
         <br/>
-        <p>Gallery goes here</p>
-        {/* <img src="images/goat_small.jpg"/> */}
         <GalleryList 
         picList={this.state.picList}
-        getPics={this.getPics}/>
+        getPics={this.getPics}
+        likePic={this.likePic}/>
       </div>
     );
   }

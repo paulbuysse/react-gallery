@@ -2,8 +2,16 @@ img {
     height: 350px;
     width: 350px;
     margin: 5px;
+    border: 2px solid black;
 };
 
 div {
-    display: inline-block;
+    height: 350px;
+    width: 350px;
+    margin: 5px;
+    border: 2px solid black;
+}
+
+h3 {
+    top: 0px;
 }
